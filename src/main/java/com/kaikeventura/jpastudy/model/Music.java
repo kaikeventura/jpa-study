@@ -1,6 +1,7 @@
 package com.kaikeventura.jpastudy.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -14,14 +15,17 @@ public class Music implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
+    @Getter
     private Long id;
 
     @JsonProperty("name")
+    @Getter
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "songwriter_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "songwriter_id")
     @Setter
+    @Getter
     private Songwriter songwriter;
 
     public Music(String name, Songwriter songwriter) {

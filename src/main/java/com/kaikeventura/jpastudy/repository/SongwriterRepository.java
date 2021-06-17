@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface SongwriterRepository extends JpaRepository<Songwriter, Long> {
     Optional<Songwriter> findByName(String songwriterName);
+    <P> Optional<P> findByName(String name, Class<P> projection);
 }

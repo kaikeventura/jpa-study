@@ -4,6 +4,7 @@ import com.kaikeventura.jpastudy.model.Music;
 import com.kaikeventura.jpastudy.model.Songwriter;
 import com.kaikeventura.jpastudy.repository.MusicRepository;
 import com.kaikeventura.jpastudy.repository.SongwriterRepository;
+import com.kaikeventura.jpastudy.repository.projection.SongwriterProjection;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,9 @@ public class SongwriterService {
 
     private Songwriter findSongwriterByName(final String songwriterName) {
         return songwriterRepository.findByName(songwriterName).orElseThrow(RuntimeException::new);
+    }
+
+    public SongwriterProjection findSongwriterByName2(final String songwriterName) {
+        return songwriterRepository.findByName(songwriterName, SongwriterProjection.class).orElseThrow(RuntimeException::new);
     }
 }

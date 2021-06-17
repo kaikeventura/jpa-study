@@ -2,6 +2,7 @@ package com.kaikeventura.jpastudy.controller;
 
 import com.kaikeventura.jpastudy.model.Music;
 import com.kaikeventura.jpastudy.model.Songwriter;
+import com.kaikeventura.jpastudy.repository.projection.SongwriterProjection;
 import com.kaikeventura.jpastudy.service.SongwriterService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,5 +32,10 @@ public class AppController {
     @GetMapping("{songwriter_name}")
     public ResponseEntity<Songwriter> fetch(@PathVariable("songwriter_name") final String songwriterName) {
         return ResponseEntity.status(HttpStatus.OK).body(songwriterService.fetchSongwriterByName(songwriterName));
+    }
+
+    @GetMapping("{songwriter_name}/2")
+    public ResponseEntity<SongwriterProjection> fetch2(@PathVariable("songwriter_name") final String songwriterName) {
+        return ResponseEntity.status(HttpStatus.OK).body(songwriterService.findSongwriterByName2(songwriterName));
     }
 }
